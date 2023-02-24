@@ -57,7 +57,7 @@ def fees_report(infile, outfile):
                 temp_dict["late_fees"]=round(late_fee_days.days*0.25, 2)
                 added_list.append(temp_dict)
             else:
-                temp_dict["patron_id"]=item['patron_id']
+                temp_dict["patron_id"]=record['patron_id']
                 temp_dict["late_fees"]=float(0)
                 added_list.append(temp_dict)
                 
