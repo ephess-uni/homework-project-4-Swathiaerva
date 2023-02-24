@@ -52,7 +52,7 @@ def fees_report(infile, outfile):
         for record in read_csv_obj:
             temp_dict={}
             late_fee_days=datetime.strptime(record['date_returned'],'%m/%d/%Y')- datetime.strptime(record['date_due'],'%m/%d/%Y') 
-            if(day1.days>0):
+            if(late_fee_days.days>0):
                 temp_dict["patron_id"]=record['patron_id']
                 temp_dict["late_fees"]=round(late_fee_days.days*0.25, 2)
                 added_list.append(temp_dict)
