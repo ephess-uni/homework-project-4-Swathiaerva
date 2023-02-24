@@ -8,10 +8,10 @@ from collections import defaultdict
 def reformat_dates(old_dates):
     """Accepts a list of date strings in format yyyy-mm-dd, re-formats each
     element to a format dd mmm yyyy--01 Jan 2001."""
-    new_list=[]
-    for d in old_dates:
-        new_list.append(datetime.strptime(d, "%Y-%m-%d").strftime("%d %b %Y"))
-    return new_list
+    modified_date_list=[]
+    for dat in old_dates:
+        modified_date_list.append(datetime.strptime(dat, "%Y-%m-%d").strftime("%d %b %Y"))
+    return modified_date_list
 
 def date_range(start, n):
     """For input date string `start`, with format 'yyyy-mm-dd', returns
@@ -20,28 +20,26 @@ def date_range(start, n):
     
     if not isinstance(start, str):
         raise TypeError
-    elif not isinstance(start, str):
+    elif not isinstance(n, int):
         raise TypeError
     else:
-        lis=[]
-        for i in range(0,n):
-            lis.append(datetime.strptime(start,"%Y-%m-%d")  + timedelta(days=i))
-        return lis
+        added_list=[]
+        for inc in range(0,n):
+            added_list.append(datetime.strptime(start,"%Y-%m-%d")  + timedelta(days=inc))
+        return added_list
 
 
 def add_date_range(values, start_date):
     """Adds a daily date range to the list `values` beginning with 
     `start_date`.  The date, value pairs are returned as tuples
     in the returned list."""
-    lis=[]
-    z=0
-    for i in values:
-        telp_list=[]       
-        telp_list.append(datetime.strptime(start_date,"%Y-%m-%d")  + timedelta(days=z))
-        telp_list.append(i)
-        lis.append(tuple(telp_list))
-        z+=1
-    return lis
+    added_list=[]
+    for i, elem in enumerate(values):
+        dat_list=[]       
+        dat_list.append(datetime.strptime(start_date,"%Y-%m-%d")  + timedelta(days=i))
+        dat_list.append(elem)
+        added_list.append(tuple(dat_list))
+    return added_list
 
 
 def fees_report(infile, outfile):
